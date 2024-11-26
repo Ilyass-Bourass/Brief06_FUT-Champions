@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img src="images/logonew.png" alt="logo">
+        </nav>
+    </header>
+    <main>
+        
+        <div class="contenair">
+            <div class="parteLeft">
+                <label for="formation" style="font-size: 18px; color: #333; font-weight: bold;">Choisissez votre
+                    formation :</label>
+                <select name="formation" id="formation">
+                    <option value="4-3-3">4-3-3</option>
+                    <option value="4-4-2">4-4-2</option>
+                </select>
+                <!-- <button class="btnAddJoueaur">Ajouter un joeur</button> -->
+                <div class="selctJoueurGaradien">
+                    <select name="formation" id="formation">
+                        <option value="0">Ajoute joueur ou Gardien</option>
+                        <option value="Gardien">Gardien</option>
+                        <option value="Joueur">Joueur</option>
+                    </select>
+                </div>
+                <div class="formulaire_ajouterJoueur">
+                    <h1>Formulaire d'ajout un Joueur</h1>
+                    <form id="playerForm">
+                        <label for="name">Nom :</label>
+                        <input type="text" id="name" name="name" placeholder="Entrez le nom du joueur" required>
+
+                        <label for="photo">Photo (URL) :</label>
+                        <input type="url" id="photo" name="photo" placeholder="Entrez l'URL de la photo" required>
+
+                        <label for="position">Position :</label>
+                        <select id="position" name="position" required>
+                            <option value="0">-- Sélectionnez une position --</option>
+                            <option value="CB">Défenseurs centraux</option>
+                            <option value="LB">Latéral gauche</option>
+                            <option value="RB">Latéral droit</option>
+                            <option value="CM">Milieux centraux</option>
+                            <option value="LW">Ailier gauche</option>
+                            <option value="RW">Ailier droit</option>
+                            <option value="ST">Attaquant central</option>
+                        </select>
+
+                        <label for="nationality">Nationalité :</label>
+                        <input type="text" id="nationality" name="nationality"
+                            placeholder="Entrez la nationalité du joueur" required>
+
+                        <label for="club">Club :</label>
+                        <input type="text" id="club" name="club" placeholder="Entrez le nom du club" required>
+
+                        <label for="age">Âge :</label>
+                        <input type="number" id="age" name="age" placeholder="Entrez l'âge du joueur" required>
+
+                        <label for="rating">Rating :</label>
+                        <input type="number" id="rating" required placeholder="Rating...">
+
+                        <label for="passing">Passing :</label>
+                        <input type="number" id="passing" required placeholder="Passing...">
+
+                        <label for="dribbling">Dribbling :</label>
+                        <input type="number" id="dribbling" required placeholder="Dribbling...">
+
+                        <label for="defending">Defending :</label>
+                        <input type="number" id="defending" required placeholder="Defending...">
+
+                        <label for="physical">Physical :</label>
+                        <input type="number" id="physical" required placeholder="Physical...">
+
+                        <button class="btnEnrgestrerJoueur" type="submit">Enregistrer le joueur</button>
+                    </form>
+                </div>
+
+                <div class="formulaireAjouterGardiennt">
+                    <h1>Formulaire d'ajout un Gardien</h1>
+                    <form id="playerForm">
+                        <label for="name">Nom :</label>
+                        <input type="text" id="name" name="name" placeholder="Entrez le nom du joueur" required>
+
+                        <label for="photo">Photo (URL) :</label>
+                        <input type="url" id="photo" name="photo" placeholder="Entrez l'URL de la photo" required>
+
+
+                        <label for="nationality">Nationalité :</label>
+                        <input type="text" id="nationality" name="nationality"
+                            placeholder="Entrez la nationalité du joueur" required>
+
+                        <label for="club">Club :</label>
+                        <input type="text" id="club" name="club" placeholder="Entrez le nom du club" required>
+
+                        <label for="age">Âge :</label>
+                        <input type="number" id="age" name="age" placeholder="Entrez l'âge du joueur" required>
+
+                        <label for="rating">Rating :</label>
+                        <input type="number" id="rating" required placeholder="Rating...">
+
+                        <label for="diving">Diving :</label>
+                        <input type="number" id="diving" required placeholder="Passing...">
+
+                        <label for="handling">Handling :</label>
+                        <input type="number" id="handling" required placeholder="Dribbling...">
+
+                        <label for="reflexes">Reflexes :</label>
+                        <input type="number" id="reflexes" required placeholder="Defending...">
+
+                        <label for="positioning">Positioning :</label>
+                        <input type="number" id="positioning" required placeholder="Physical...">
+
+                        <button class="btnEnrgestrerJoueur" type="submit">Enregistrer le joueur</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="parteright">
+                <div class="player GK" value="GK">
+                    <!-- <i class="fas fa-plus" value="GK"></i> -->
+                    <i class="fas fa-times"></i> 
+                    <div class="DétailsJoeur">
+                        <div class="carte">
+                            <img src="https://cdn.sofifa.net/players/158/023/25_120.png" alt="Photo du joueur" class="photo-joueur">
+                            <h2 class="nom-joueur">Lionel Messi</h2>
+                            <p class="équipe">Inter Miami</p>
+                            <p class="nationality">Nat:ARG</p>
+                            <!-- <img src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="photo"> -->
+                            <div class="stats">
+                                <p>PAC: 93</p>
+                                <p>SHO: 87</p>
+                                <p>PAS: 90</p>
+                                <p>DRI: 94</p>
+                                <p>DEF: 33</p>
+                                <p>PHY: 64</p>
+                                <!-- <img src="images/badge_gold_1.png" alt=""> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player CB" id="CBR">
+                    <i class="fas fa-plus" value="CB"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player CB" id="CBL">
+                    <i class="fas fa-plus" value="CB"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player LB">
+                    <i class="fas fa-plus" value="LB"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player RB">
+                    <i class="fas fa-plus" value="RB"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player CM" id="CML">
+                    <i class="fas fa-plus" value="CM"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player CM" id="CMR">
+                    <i class="fas fa-plus" value="CM"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player CM" id="CMO">
+                    <i class="fas fa-plus" value="CM"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player LW">
+                    <i class="fas fa-plus" value="LW"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player RW">
+                    <i class="fas fa-plus" value="RW"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+                <div class="player ST">
+                    <i class="fas fa-plus" value="ST"></i>
+                    <i class="fas fa-times"></i> 
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
