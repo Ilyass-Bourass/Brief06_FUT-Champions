@@ -273,14 +273,14 @@ button {
     grid-column: 6/8;
 }
 
-.LB {
+.RB {
     grid-row: 4;
     grid-column: 8/10;
     /* position: relative; */
     bottom: 50Px;
 }
 
-.RB {
+.LB {
     grid-row: 4;
     grid-column: 2/4;
     /* position: relative; */
@@ -323,4 +323,58 @@ button {
 .RW {
     /* position: relative; */
     top: 50Px;
+}
+
+ .containerJoueurs{
+    width: 81%;
+    margin:20px auto 100px auto ;
+    
+    background-color: #2c8718;
+    display: flex;
+    flex-wrap: wrap;
+    height: 224px;
+    overflow-x: scroll;
+}
+
+.containerJoueurs .player{
+    width: 300px;
+    height: 220px;
+}
+
+.containerJoueurs .player:hover{
+    transform: scale(1.2);
+}
+
+
+.containerJoueurs .player-position,.containerJoueurs .player-info p {
+    font-size: 20px;
+}
+.containerJoueurs .player-name P{
+    font-size: 14px;
+}
+
+.containerJoueurs .player-stats {
+    grid-area: 9/5/12/9;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.containerJoueurs .player-stats .stats p{
+    font-size: 10px;
+    font-weight: 700;
+    /* color: red; */
+}
+.containerJoueurs .player-stats .stats p span{
+    font-size: 12px;
+   
+}
+
+.containerJoueurs #CML,.containerJoueurs #CMR,.containerJoueurs .LW,.containerJoueurs .RW {
+    top: 0;
+}
+
+.containerJoueurs .RB , .containerJoueurs .LB{
+    bottom: 0;
 }

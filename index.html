@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="DATA.js" defer></script>
     <script src="script.js" defer></script>
+
 </head>
 
 <body>
@@ -19,6 +21,7 @@
     <main>
 
         <div class="contenair">
+
             <div class="parteLeft">
                 <label for="formation" style="font-size: 18px; color: #333; font-weight: bold;">Choisissez votre
                     formation :</label>
@@ -125,11 +128,18 @@
 
 
             </div>
+
             <div class="parteright">
-                <div class="player GK" value="GK">
+
+                <div class="player GK cards" value="GK">
                     <!-- <i class="fas fa-plus" value="GK"></i>
+                <i class="fas fa-times"></i>  -->
+                </div>
+
+                <div class="player CB" id="CBR">
+                    <!-- <i class="fas fa-plus" value="CB"></i>
                     <i class="fas fa-times"></i>  -->
-                    <div class="DetailsJoeur">
+                    <!-- <div class="DetailsJoeur">
                         <div class="player-position">
                             <p>CM</p>
                         </div>
@@ -156,51 +166,194 @@
                                 <p>DEF <span>80</span></p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="player CB" id="CBR">
-                    <!-- <i class="fas fa-plus" value="CB"></i>
-                    <i class="fas fa-times"></i>  -->
-                </div>
+
                 <div class="player CB" id="CBL">
                     <!-- <i class="fas fa-plus" value="CB"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player LB">
                     <!-- <i class="fas fa-plus" value="LB"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player RB">
                     <!-- <i class="fas fa-plus" value="RB"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player CM" id="CML">
                     <!-- <i class="fas fa-plus" value="CM"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player CM" id="CMR">
                     <!-- <i class="fas fa-plus" value="CM"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player CM" id="CMO">
                     <!-- <i class="fas fa-plus" value="CM"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player LW">
                     <!-- <i class="fas fa-plus" value="LW"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player RW">
                     <!-- <i class="fas fa-plus" value="RW"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
                 <div class="player ST">
                     <!-- <i class="fas fa-plus" value="ST"></i>
                     <i class="fas fa-times"></i>  -->
                 </div>
+
             </div>
+
+        </div>
+
+        <div class="containerJoueurs">
+
+            <!-- <div class="player GK" >
+                
+                <div class="DetailsJoeur">
+                    <div class="player-position">
+                        <p>GK</p>
+                    </div>
+                    <div class="player-photo">
+                        <img src="https://cdn.sofifa.net/players/230/621/25_120.png" id="player-photo" alt="">
+                    </div>
+                    <div class="player-info">
+                        <p class="rating">90</p>
+                        <div class="country">
+                            <img src="https://cdn.sofifa.net/flags/it.png" id="player-country" alt="">
+                        </div>
+                        <div class="club">
+                            <img src="https://cdn.sofifa.net/meta/team/591/120.png" id="logo" alt="">
+                        </div>
+                    </div>
+                    <div class="player-name">
+                        <p>Donnarumma</p>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stats">
+                            <p class="diving">DIV <span>80</span></p>
+                            <p class="handling">HAN <span>80</span></p>
+                            <p class="kicking">KIC <span>80</span></p>
+                            <p class="reflexes">REF <span>80</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="player CB" id="CBR">
+                
+                <div class="DetailsJoeur">
+                    <div class="player-position">
+                        <p>CM</p>
+                    </div>
+                    <div class="player-photo">
+                        <img src="https://cdn.sofifa.net/players/192/985/25_120.png" id="player-photo" alt="">
+                    </div>
+                    <div class="player-info">
+                        <p class="rating">90</p>
+                        <div class="country">
+                            <img src="https://cdn.sofifa.net/flags/be.png" id="player-country" alt="">
+                        </div>
+                        <div class="club">
+                            <img src="https://cdn.sofifa.net/meta/team/9/120.png" id="logo" alt="">
+                        </div>
+                    </div>
+                    <div class="player-name">
+                        <p>Kevin de bruyne</p>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stats">
+                            <p class="shooting">SHO <span>80</span></p>
+                            <p class="passing">PAS <span>80</span></p>
+                            <p class="dribbling">DIR <span>80</span></p>
+                            <p class="defending">DEF <span>80</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="player ST" id="CBR">
+                
+                <div class="DetailsJoeur">
+                    <div class="player-position">
+                        <p>ST</p>
+                    </div>
+                    <div class="player-photo">
+                        <img src="https://cdn.sofifa.net/players/020/801/25_120.png" id="player-photo" alt="">
+                    </div>
+                    <div class="player-info">
+                        <p class="rating">90</p>
+                        <div class="country">
+                            <img src="https://cdn.sofifa.net/flags/pt.png" id="player-country" alt="">
+                        </div>
+                        <div class="club">
+                            <img src="https://cdn.sofifa.net/meta/team/2506/120.png" id="logo" alt="">
+                        </div>
+                    </div>
+                    <div class="player-name">
+                        <p>Ronaldo</p>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stats">
+                            <p class="shooting">SHO <span>80</span></p>
+                            <p class="passing">PAS <span>80</span></p>
+                            <p class="dribbling">PAC <span>80</span></p>
+                            <p class="defending">DEF <span>80</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="player RW" id="CBR">
+                
+                <div class="DetailsJoeur">
+                    <div class="player-position">
+                        <p>RW</p>
+                    </div>
+                    <div class="player-photo">
+                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" id="player-photo" alt="">
+                    </div>
+                    <div class="player-info">
+                        <p class="rating">90</p>
+                        <div class="country">
+                            <img src=https://cdn.sofifa.net/flags/ar.png id="player-country" alt="">
+                        </div>
+                        <div class="club">
+                            <img src="https://cdn.sofifa.net/meta/team/239235/120.png" id="logo" alt="">
+                        </div>
+                    </div>
+                    <div class="player-name">
+                        <p>Lionel Messi</p>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stats">
+                            <p class="shooting">SHO <span>80</span></p>
+                            <p class="passing">PAS <span>80</span></p>
+                            <p class="dribbling">PAC <span>80</span></p>
+                            <p class="defending">DEF <span>80</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
         </div>
     </main>
 </body>
 
 </html>
+
+
+<!-- <i class="fas fa-plus" value="CB"></i>
+                <i class="fas fa-times"></i>  -->
