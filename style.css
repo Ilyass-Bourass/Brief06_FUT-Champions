@@ -152,26 +152,23 @@ button {
 
 .player img {
     max-width: 100%;
-    /* L'image ne dépasse jamais la largeur de son conteneur */
     height: auto;
-    /* Conserve les proportions de l'image */
     object-fit: contain;
-    /* L'image s'adapte à son conteneur sans déformation */
     display: block;
-    /* Évite tout espace blanc autour de l'image */
+
 }
 
-.fa-plus {
+/* .fa-plus {
 
     color: #3db921;
     font-size: 20px;
     z-index: 10;
-}
+} */
 
 .fa-times {
     position: absolute;
-    top: 0px;
-    right: 25px;
+    top: 10%;
+    right: 25%;
     color: red;
     font-size: 20px;
     font-weight: bold;
@@ -327,7 +324,7 @@ button {
 
  .containerJoueurs{
     width: 81%;
-    margin:20px auto 100px auto ;
+    margin:20px auto 0px auto ;
     
     background-color: #2c8718;
     display: flex;
