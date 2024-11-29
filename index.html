@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="formulaire_ajouterJoueur">
-                    <h1>Formulaire d'ajout un Joueur</h1>
+                    <h1>Formulaire d'ajouter un Joueur</h1>
                     <form id="playerForm">
 
                         <label for="name">Nom :</label>
@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="formulaireAjouterGardiennt">
-                    <h1>Formulaire d'ajout un Gardien</h1>
+                    <h1>Formulaire d'ajouter un Gardien</h1>
                     <form id="playerForm">
 
                         <label for="name">Name :</label>
@@ -109,10 +109,10 @@
                         <input type="number" id="rating"  placeholder="Rating...">
 
                         <label for="diving">Diving :</label>
-                        <input type="number" id="diving"  placeholder="Passing...">
+                        <input type="number" id="diving"  placeholder="diving...">
 
                         <label for="handling">Handling :</label>
-                        <input type="number" id="handling"  placeholder="Dribbling...">
+                        <input type="number" id="handling"  placeholder="handling...">
 
                         <label for="kicking">Kicking :</label>
                         <input type="number" id="kicking"  placeholder="kicking...">
@@ -124,14 +124,79 @@
                     </form>
                 </div>
 
+                <div class="FormulaireModierjoueur formulaire_ajouterJoueur">
+                    <h1>Formulaire pour modier un Joueur</h1>
+                    <form id="playerForm">
+
+                        <label for="position">Nouveau Position :</label>
+                        <select id="position" name="position" >
+                            <option value="0">-- Sélectionnez une position --</option>
+                            <option value="CB">CB</option>
+                            <option value="LB">LB</option>
+                            <option value="RB">RB</option>
+                            <option value="CM">CM</option>
+                            <option value="LW">LW</option>
+                            <option value="RW">RW</option>
+                            <option value="ST">ST</option>
+                        </select>
+
+                        <label for="club">Nouveau Club (URL) :</label>
+                        <input type="text" id="club" name="club" placeholder="Entrez le club du joueur" >
+
+                        <label for="rating">Nouveau Rating :</label>
+                        <input type="number" id="rating"  placeholder="Rating...">
+
+                        <label for="shooting">Nouveau Shooting :</label>
+                        <input type="number" id="shooting"  placeholder="shooting...">
+
+                        <label for="passing">Nouveau Passing :</label>
+                        <input type="number" id="passing"  placeholder="passing...">
+
+                        <label for="dribbling">Nouveau Dribbling :</label>
+                        <input type="number" id="dribbling"  placeholder="Dribbling...">
+
+                        <label for="defending">Nouveau Defending :</label>
+                        <input type="number" id="defending"  placeholder="Defending...">
+
+                        <button class="btnEnrgestrerJoueur" type="submit">Enregistrer le joueur</button>
+                    </form>
+                </div>
+
+                <div class="FormulaireModierGardient formulaireAjouterGardiennt">
+                    <h1>Formulaire pour Modifier un Gardien</h1>
+                    <form id="playerForm">
+                        
+                        <label for="club">Nouveau Club (URL) :</label>
+                        <input type="text" id="club" name="club" placeholder="Entrez le club du joueur" >
+
+                        <label for="rating"> Nouveau Rating :</label>
+                        <input type="number" id="rating"  placeholder="Rating...">
+
+                        <label for="diving">Nouveau Diving :</label>
+                        <input type="number" id="diving"  placeholder="diving...">
+
+                        <label for="handling">Nouveau Handling :</label>
+                        <input type="number" id="handling"  placeholder="handling...">
+
+                        <label for="kicking">Nouveau Kicking :</label>
+                        <input type="number" id="kicking"  placeholder="kicking...">
+
+                        <label for="reflexes">Nouveau Reflexes :</label>
+                        <input type="number" id="reflexes"  placeholder="reflexes...">
+
+                        <button class="btnEnrgestrerJoueur" type="submit">Enregistrer le joueur</button>
+                    </form>
+                </div>
+
 
             </div>
 
             <div class="parteright">
-
+                
                 <div class="player GK cards" value="GK">
                     <!-- <i class="fas fa-plus" value="GK"></i>
                 <i class="fas fa-times"></i>  -->
+                <!-- <i class="fa fa-user-edit"></i> -->
                 </div>
 
                 <div class="player CB" id="CBR">

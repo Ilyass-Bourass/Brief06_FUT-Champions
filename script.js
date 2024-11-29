@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     
 
-   // formulaire_ajouterJoueur.style.display = "block";
+
 
     const containerJoueurs = document.querySelector(".containerJoueurs");
 
-   // formulaireAjouterGardiennt.style.display = "block"; 
+
 
     function ajouterGardientLocalStorage() {
         const formulaireAjouterGardiennt = document.querySelector(".formulaireAjouterGardiennt #playerForm");
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             console.log(name,photo,nationality,club, rating, diving, handling, kicking, reflexes);
     
          
-            if (1) {
+            if (name && photo &&  rating && diving && handling && kicking && reflexes) {
                 const Player = {
                     name,
                     photo,
@@ -148,7 +148,7 @@ ajouterJoueurLocalStorage();
     
 
     function ajouterListeJoeur(){
-        Players.forEach((Player,index_Joueur_changement)=>{
+        Players.forEach((Player,index)=>{
 
             if(Player.position==="GK"){
     
@@ -184,8 +184,59 @@ ajouterJoueurLocalStorage();
                         </div>
                     </div>
             `
-            
+            const iconSupprimer=document.createElement("i");
+            iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+            Joueur.appendChild(iconSupprimer);
             containerJoueurs.appendChild(Joueur);
+
+            iconSupprimer.addEventListener("click",()=>{
+                Players.splice(index,1);
+                localStorage.setItem("Players",JSON.stringify(Players));
+                location.reload();
+            })
+
+            const iconModifier=document.createElement("i");
+            iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
+            Joueur.appendChild(iconModifier);
+            containerJoueurs.appendChild(Joueur);
+
+            const divFormulaireModierGardient=document.querySelector(".FormulaireModierGardient");
+           
+            iconModifier.addEventListener("click",()=>{
+                const FormulaireModierGardient=divFormulaireModierGardient.querySelector("#playerForm");
+                divFormulaireModierGardient.style.display="block";
+
+                
+                FormulaireModierGardient[0].value = Player.club;
+                FormulaireModierGardient[1].value = Player.rating;
+                FormulaireModierGardient[2].value = Player.diving;
+                FormulaireModierGardient[3].value = Player.handling;
+                FormulaireModierGardient[4].value = Player.kicking;
+                FormulaireModierGardient[5].value = Player.reflexes;
+    
+                const BtnEnregestrerLeformulaire = FormulaireModierGardient[6];
+
+                BtnEnregestrerLeformulaire.addEventListener("click", (e) => {
+                    e.preventDefault();
+    
+                    
+                   
+                    Player.club = FormulaireModierGardient[0].value.trim();
+                    Player.rating = parseInt(FormulaireModierGardient[1].value);
+                    Player.diving = parseInt(FormulaireModierGardient[2].value);
+                    Player.handling = parseInt(FormulaireModierGardient[3].value);
+                    Player.kicking = parseInt(FormulaireModierGardient[4].value);
+                    Player.reflexes = parseInt(FormulaireModierGardient[5].value);
+    
+                  
+                    localStorage.setItem("Players", JSON.stringify(Players));
+    
+                    
+                    divFormulaireModierGardient.style.display = "none";
+                    location.reload();
+                });
+            })
+
         }
         else {
             const Joueur=document.createElement("div");
@@ -220,20 +271,74 @@ ajouterJoueurLocalStorage();
                         </div>
                     </div>
             `
+            const iconSupprimer=document.createElement("i");
+            iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+            Joueur.appendChild(iconSupprimer);
+
             containerJoueurs.appendChild(Joueur);
+            iconSupprimer.addEventListener("click",()=>{
+                Players.splice(index,1);
+                localStorage.setItem("Players",JSON.stringify(Players));
+                location.reload();
+            })
+
+            const iconModifier=document.createElement("i");
+            iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
+            Joueur.appendChild(iconModifier);
+            containerJoueurs.appendChild(Joueur);
+            
+            const divformulaireModierJoueur=document.querySelector(".FormulaireModierjoueur");
+            
+
+            iconModifier.addEventListener("click",()=>{
+                const formulaireModierJoueur=divformulaireModierJoueur.querySelector("#playerForm");
+                divformulaireModierJoueur.style.display="block";
+
+                formulaireModierJoueur[0].value = Player.position;
+                formulaireModierJoueur[1].value = Player.club;
+                formulaireModierJoueur[2].value = Player.rating;
+                formulaireModierJoueur[3].value = Player.shooting;
+                formulaireModierJoueur[4].value = Player.passing;
+                formulaireModierJoueur[5].value = Player.dribbling;
+                formulaireModierJoueur[6].value = Player.defending;
+    
+                const BtnEnregestrerLeformulaire = formulaireModierJoueur[7];
+
+                BtnEnregestrerLeformulaire.addEventListener("click", (e) => {
+                    e.preventDefault();
+    
+                    
+                    Player.position = formulaireModierJoueur[0].value.trim();
+                    Player.club = formulaireModierJoueur[1].value.trim();
+                    Player.rating = parseInt(formulaireModierJoueur[2].value);
+                    Player.shooting = parseInt(formulaireModierJoueur[3].value);
+                    Player.passing = parseInt(formulaireModierJoueur[4].value);
+                    Player.dribbling = parseInt(formulaireModierJoueur[5].value);
+                    Player.defending = parseInt(formulaireModierJoueur[6].value);
+    
+                  
+                    localStorage.setItem("Players", JSON.stringify(Players));
+    
+                    
+                    divformulaireModierJoueur.style.display = "none";
+                    location.reload();
+                });
+            })
+
         }
         });
     }
 
     ajouterListeJoeur();
-    
 
+    
     const JoueursPrincipal=document.querySelectorAll(".parteright .player");
     const Joueurschangement=document.querySelectorAll(".containerJoueurs .player");
-
+    const JoueursPrermutation=document.querySelectorAll(".parteright .player")[0];
 
     function updatePlayerPosition(PositionJoueur,JoueurPrincipal){
         Joueurschangement.forEach(Joueuchangement=>{
+            // if(Joueuchangement.querySelector('.player-position p').textContent==PositionJoueur && jOueurnExistePas(Joueuchangement))
            if(Joueuchangement.querySelector('.player-position p').textContent==PositionJoueur){
             Joueuchangement.style.display="";
            }
@@ -241,6 +346,15 @@ ajouterJoueurLocalStorage();
             Joueuchangement.style.display="none";
            }
            Joueuchangement.onclick=function(){
+                // if(JoueurPrincipal){
+                //     JoueursPrermutation.innerHTML=JoueurPrincipal.innerHTML;
+                //     JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
+                //     Joueuchangement.innerHTML=JoueursPrermutation.innerHTML;
+                // }
+                // else{
+                //     JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
+                // }
+               
                 JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
 
                 const i=document.createElement("i");
@@ -249,23 +363,49 @@ ajouterJoueurLocalStorage();
 
                 i.addEventListener("click",()=>{
                     JoueurPrincipal.innerHTML="";
-                   // ajouterListeJoeur();
                 })
+               // Joueuchangement.style.display ='none'
            }
         })
     }
+
+    // function jOueurnExistePas(Joueuchangement) {
+    //     let trouve = true;  
+    
+        
+    //     const joueurNomElement = Joueuchangement.querySelector('.player-name p');
+    //     if (joueurNomElement) {
+    //         const joueurNom = joueurNomElement.textContent;
+    //         JoueursPrincipal.forEach(JoueurPrincipal => {
+    //             const joueurPrincipalNomElement = JoueurPrincipal.querySelector('.player-name p');
+    //             if (joueurPrincipalNomElement) {
+    //                 const joueurPrincipalNom = joueurPrincipalNomElement.textContent;
+    
+    //                 if (joueurNom === joueurPrincipalNom) {
+    //                     trouve = false;  
+    //                 }
+    //             }
+    //         });
+    //     }
+        
+    //     return trouve;
+    // }
+    
+
 
     function ajouterJoueurListePrincipal(){
 
         JoueursPrincipal.forEach(JoueurPrincipal=>{
             JoueurPrincipal.onclick=function(){
-                location.href = "#containerJoueurs";
+                //location.href = "#containerJoueurs";
                 // console.log(JoueurPrincipal.classList[1]);
                 updatePlayerPosition(JoueurPrincipal.classList[1],JoueurPrincipal);
             }
                 
         })
+        
     }
+
     ajouterJoueurListePrincipal()
 
     
