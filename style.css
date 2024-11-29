@@ -383,3 +383,133 @@ button {
 .containerJoueurs .RB , .containerJoueurs .LB{
     bottom: 0;
 }
+
+
+@media screen and (max-width:1024px){
+
+    .contenair {
+        width: 100%;
+        transform: scale(0.8);
+    }
+    .containerJoueurs {
+       justify-content: center;
+       width: 90%;
+       transform: scale(0.8);
+       margin-top: -75px;
+    }
+    .contenair{
+        margin-top: 0;
+    }
+
+}
+
+@media screen and (max-width:768px){
+    .contenair {
+        flex-direction:column;
+        height: auto;
+        align-items: center;
+        width: 100%;
+        margin-top: -50px;
+    }
+
+    .contenair .parteright {
+       height: 600px;
+       width: 100%;
+    }
+
+    .contenair .parteLeft {
+        width: 70%;
+        height: 300px;
+        justify-self:center;
+        
+        overflow-y: scroll;
+    }
+    .containerJoueurs {
+        margin-top: -86px;
+        transform: scale(1);
+    }
+    .containerJoueurs .player {
+        width: 200px;
+        height: 210px;
+    }
+    .player .player-photo {
+        grid-area: 3 / 5 / 0 / 10;
+       
+    }
+    .DetailsJoeur .player-photo {
+        grid-area: 4 / 6 / 8 / 10;
+    }
+    
+}
+
+@media screen and (max-width:676px) {
+    .contenair {
+        width: 100%;
+        transform: scale(1);
+    }
+    .contenair {
+        margin-top: 13px;
+    }
+    .containerJoueurs {
+        margin-top: 0px;
+    }
+    .DetailsJoeur .player-stats {
+        background-color:initial;
+    
+    }
+    .fa-times {
+        top: 12%;
+        right: 19%;    
+    }
+
+}
+
+@media screen and (max-width:565px) {
+    .fa-times {
+        top: 12%;
+        right: 19%;    
+    }
+}
+
+@media screen and (max-width:426px) {
+    .containerJoueurs .player {
+        width: 167px;
+        height: 191px;
+    }
+
+    .player .player-photo {
+        grid-area: 4 / 6 / 6 / 10;
+    }
+    .parteright .player{
+        transform: scale(1.2);
+        background-position-x:7px;
+    }
+    .parteright .player .player-photo {
+        grid-area: 4 / 6 / 6 / 12;
+    }
+    .parteright .DetailsJoeur .player-position{
+        grid-area: 3 / 7 / 4 / 10;
+    }
+    .parteright .fa-times {
+        top: 8%;
+        right: 0%;
+    }
+    
+}
+
+
+@media  screen and (max-width:376px) {
+    .parteright .DetailsJoeur .player-stats {
+        grid-area: 8 / 4 / 11 / 9;
+    }
+    .parteright .DetailsJoeur .player-name {
+        grid-area: 7 / 7 / 10 / 11;
+    }
+
+    .parteright .fa-times {
+        top: 15%;
+        right: 0%;
+        font-size: 12px;
+    }
+    
+}
