@@ -6,148 +6,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     const selctJoueurGaradien=document.querySelector(".selctJoueurGaradien select");
     const formulaire_ajouterJoueur=document.querySelector(".formulaire_ajouterJoueur");
     const formulaireAjouterGardiennt=document.querySelector(".formulaireAjouterGardiennt");
-    
-    
-
-    function choisirentreJoueurGardient(){
-        selctJoueurGaradien.addEventListener("change", () => {
-            if (selctJoueurGaradien.value === "Gardien") {
-                formulaire_ajouterJoueur.style.display = "none";
-                formulaireAjouterGardiennt.style.display = "block";
-            } else if (selctJoueurGaradien.value === "Joueur") {
-                formulaireAjouterGardiennt.style.display = "none";
-                formulaire_ajouterJoueur.style.display = "block";
-            } else {
-                formulaire_ajouterJoueur.style.display = "none";
-                formulaireAjouterGardiennt.style.display = "none";
-            }
-        });
-    }
-
-    choisirentreJoueurGardient();
-    
-
-    
-
-
-
     const containerJoueurs = document.querySelector(".containerJoueurs");
-
-
-
-    function ajouterGardientLocalStorage() {
-        const formulaireAjouterGardiennt = document.querySelector(".formulaireAjouterGardiennt #playerForm");
-        const BtnEnregestrerLeformulaire = formulaireAjouterGardiennt.querySelector(".btnEnrgestrerJoueur");
     
-        // Vérifier si des joueurs existent déjà dans le localStorage
-        let Players = JSON.parse(localStorage.getItem('Players')) || [];
     
-        BtnEnregestrerLeformulaire.addEventListener('click', function(event) {
-            event.preventDefault();  
-    
-         
-            const name = formulaireAjouterGardiennt.querySelector("#name").value.trim();  
-            const photo = formulaireAjouterGardiennt.querySelector("#photo").value.trim();
-            
-            const position = "GK";  
-            const nationality = formulaireAjouterGardiennt.querySelector("#nationality").value.trim();
-            const club = formulaireAjouterGardiennt.querySelector("#club").value.trim();
-            const rating = formulaireAjouterGardiennt.querySelector("#rating").value.trim();
-            const diving = formulaireAjouterGardiennt.querySelector("#diving").value.trim();
-            const handling = formulaireAjouterGardiennt.querySelector("#handling").value.trim();
-            const kicking = formulaireAjouterGardiennt.querySelector("#kicking").value.trim();
-            const reflexes = formulaireAjouterGardiennt.querySelector("#reflexes").value.trim();
-    
-           
-            console.log(name,photo,nationality,club, rating, diving, handling, kicking, reflexes);
-    
-         
-            if (name && photo &&  rating && diving && handling && kicking && reflexes) {
-                const Player = {
-                    name,
-                    photo,
-                    position,
-                    nationality,
-                    club,
-                    rating: parseInt(rating),  
-                    diving: parseInt(diving),
-                    handling: parseInt(handling),
-                    kicking: parseInt(kicking),
-                    reflexes: parseInt(reflexes)
-                };
-    
-                Players.push(Player);
-    
+    function afficherJoueur(){
 
-                localStorage.setItem('Players', JSON.stringify(Players));
-    
-
-                formulaireAjouterGardiennt.reset();
-            } else {
-                alert('Veuillez remplir tous les champs requis.');
-            }
-            location.reload();
-        });
-    }
-    
-    ajouterGardientLocalStorage();
-    
-
-function ajouterJoueurLocalStorage() {
-    const formulaireAjouterJoueur = document.querySelector(".formulaire_ajouterJoueur #playerForm");
-    const BtnEnregestrerLeformulaire = formulaireAjouterJoueur.querySelector(".btnEnrgestrerJoueur");
-
-    BtnEnregestrerLeformulaire.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        
-        const name = document.querySelector("#name").value;
-        const photo = document.querySelector("#photo").value;
-        const position = document.querySelector("#position").value;
-        const nationality = document.querySelector("#nationality").value;
-        const club = document.querySelector("#club").value;
-        const rating = document.querySelector("#rating").value;
-        const shooting = document.querySelector("#shooting").value;
-        const passing = document.querySelector("#passing").value;
-        const dribbling = document.querySelector("#dribbling").value;
-        const defending = document.querySelector("#defending").value;
-
-        
-        if (name && photo && position && rating && shooting && passing && dribbling && defending){
-            
-            const Player = {
-                name,
-                photo,
-                position,
-                nationality,
-                club,
-                rating: parseInt(rating),  
-                shooting: parseInt(shooting),
-                passing: parseInt(passing),
-                dribbling: parseInt(dribbling),
-                defending: parseInt(defending)
-            };
-
-          
-            Players.push(Player);
-
-            localStorage.setItem('Players', JSON.stringify(Players));
-
-
-            formulaireAjouterJoueur.reset();
-        } else {
-
-            alert('Veuillez remplir tous les champs requis.');
-        }
-        location.reload();
-    });
-}
-ajouterJoueurLocalStorage();
-
-
-    
-
-    function ajouterListeJoeur(){
+        containerJoueurs.innerHTML="";
         Players.forEach((Player,index)=>{
 
             if(Player.position==="GK"){
@@ -190,9 +54,7 @@ ajouterJoueurLocalStorage();
             containerJoueurs.appendChild(Joueur);
 
             iconSupprimer.addEventListener("click",()=>{
-                Players.splice(index,1);
-                localStorage.setItem("Players",JSON.stringify(Players));
-                location.reload();
+                supprimerJoueur(Player,index);
             })
 
             const iconModifier=document.createElement("i");
@@ -200,41 +62,8 @@ ajouterJoueurLocalStorage();
             Joueur.appendChild(iconModifier);
             containerJoueurs.appendChild(Joueur);
 
-            const divFormulaireModierGardient=document.querySelector(".FormulaireModierGardient");
-           
             iconModifier.addEventListener("click",()=>{
-                const FormulaireModierGardient=divFormulaireModierGardient.querySelector("#playerForm");
-                divFormulaireModierGardient.style.display="block";
-
-                
-                FormulaireModierGardient[0].value = Player.club;
-                FormulaireModierGardient[1].value = Player.rating;
-                FormulaireModierGardient[2].value = Player.diving;
-                FormulaireModierGardient[3].value = Player.handling;
-                FormulaireModierGardient[4].value = Player.kicking;
-                FormulaireModierGardient[5].value = Player.reflexes;
-    
-                const BtnEnregestrerLeformulaire = FormulaireModierGardient[6];
-
-                BtnEnregestrerLeformulaire.addEventListener("click", (e) => {
-                    e.preventDefault();
-    
-                    
-                   
-                    Player.club = FormulaireModierGardient[0].value.trim();
-                    Player.rating = parseInt(FormulaireModierGardient[1].value);
-                    Player.diving = parseInt(FormulaireModierGardient[2].value);
-                    Player.handling = parseInt(FormulaireModierGardient[3].value);
-                    Player.kicking = parseInt(FormulaireModierGardient[4].value);
-                    Player.reflexes = parseInt(FormulaireModierGardient[5].value);
-    
-                  
-                    localStorage.setItem("Players", JSON.stringify(Players));
-    
-                    
-                    divFormulaireModierGardient.style.display = "none";
-                    location.reload();
-                });
+                modifierInformationGardient(Player);
             })
 
         }
@@ -277,9 +106,7 @@ ajouterJoueurLocalStorage();
 
             containerJoueurs.appendChild(Joueur);
             iconSupprimer.addEventListener("click",()=>{
-                Players.splice(index,1);
-                localStorage.setItem("Players",JSON.stringify(Players));
-                location.reload();
+                supprimerJoueur(Player,index);
             })
 
             const iconModifier=document.createElement("i");
@@ -287,11 +114,32 @@ ajouterJoueurLocalStorage();
             Joueur.appendChild(iconModifier);
             containerJoueurs.appendChild(Joueur);
             
-            const divformulaireModierJoueur=document.querySelector(".FormulaireModierjoueur");
-            
-
             iconModifier.addEventListener("click",()=>{
-                const formulaireModierJoueur=divformulaireModierJoueur.querySelector("#playerForm");
+                modifierInformationJoueur(Player);
+            })
+
+        }
+        });
+    }
+    afficherJoueur();
+
+    
+    function supprimerJoueur(Player,indexSupprimer){
+        Players.splice(indexSupprimer,1);
+        localStorage.setItem("Players",JSON.stringify(Players));
+        if(Player.position=="GK"){
+            alert(`Le gardient ${Player.name} à été supprimer avec succés`);
+        }
+        else{
+            alert(`Le joueur ${Player.name} à été supprimer avec succés`);
+        }
+        afficherJoueur();
+    }
+
+    function modifierInformationJoueur(Player){
+        const divformulaireModierJoueur=document.querySelector(".FormulaireModierjoueur");
+        const formulaireModierJoueur=divformulaireModierJoueur.querySelector("#playerForm");
+
                 divformulaireModierJoueur.style.display="block";
 
                 formulaireModierJoueur[0].value = Player.position;
@@ -321,20 +169,108 @@ ajouterJoueurLocalStorage();
     
                     
                     divformulaireModierJoueur.style.display = "none";
-                    location.reload();
+                    alert(`la modification du Joueur ${Player.name} à été fait avec succés`);
+                    afficherJoueur();
                 });
-            })
-
-        }
-        });
     }
 
-    ajouterListeJoeur();
+    function modifierInformationGardient(Player){
+        const divFormulaireModierGardient=document.querySelector(".FormulaireModierGardient");
+        const FormulaireModierGardient=divFormulaireModierGardient.querySelector("#playerForm");
+                divFormulaireModierGardient.style.display="block";
+
+                
+                FormulaireModierGardient[0].value = Player.club;
+                FormulaireModierGardient[1].value = Player.rating;
+                FormulaireModierGardient[2].value = Player.diving;
+                FormulaireModierGardient[3].value = Player.handling;
+                FormulaireModierGardient[4].value = Player.kicking;
+                FormulaireModierGardient[5].value = Player.reflexes;
+    
+                const BtnEnregestrerLeformulaire = FormulaireModierGardient[6];
+
+                BtnEnregestrerLeformulaire.addEventListener("click", (e) => {
+                    e.preventDefault();
+    
+                    
+                   
+                    Player.club = FormulaireModierGardient[0].value.trim();
+                    Player.rating = parseInt(FormulaireModierGardient[1].value);
+                    Player.diving = parseInt(FormulaireModierGardient[2].value);
+                    Player.handling = parseInt(FormulaireModierGardient[3].value);
+                    Player.kicking = parseInt(FormulaireModierGardient[4].value);
+                    Player.reflexes = parseInt(FormulaireModierGardient[5].value);
+    
+                  
+                    localStorage.setItem("Players", JSON.stringify(Players));
+                    divFormulaireModierGardient.style.display = "none";
+                    alert(`La modification du gardient ${Player.name} à éte fait avec succés`);
+                    afficherJoueur();
+                });
+    }
+
+    const selectChoixFormation=document.querySelector("#formation");
+
+    selectChoixFormation.addEventListener("change",(e)=>{
+        chosirVotreFormation(selectChoixFormation.value);
+    });
+
+
+    function chosirVotreFormation(choixFormation){
+        const playerST=document.querySelector(".parteright .ST");
+        const playerRW=document.querySelector(".parteright .RW");
+        const playerLW=document.querySelector(".parteright .LW");
+
+        if(choixFormation==2){
+           playerST.style.gridRow = "2";
+           playerRW.style.gridColumn="7/9";
+           playerLW.style.gridColumn="3/5"
+        }
+        else if(choixFormation==1){
+            playerST.style.gridRow = "1";
+            playerRW.style.gridColumn="8/10";
+             playerLW.style.gridColumn="2/4"
+        }
+    }
+
 
     
+    selctJoueurGaradien.addEventListener("change",()=>{
+        choisirentreJoueurGardient(selctJoueurGaradien.value);
+    })
+
+    function choisirentreJoueurGardient(Choix){  
+            if (Choix=== "Gardien") {
+                formulaire_ajouterJoueur.style.display = "none";
+                formulaireAjouterGardiennt.style.display = "block";
+            } else if (Choix === "Joueur") {
+                formulaireAjouterGardiennt.style.display = "none";
+                formulaire_ajouterJoueur.style.display = "block";
+            } else {
+                formulaire_ajouterJoueur.style.display = "none";
+                formulaireAjouterGardiennt.style.display = "none";
+            }   
+    }
+
+
     const JoueursPrincipal=document.querySelectorAll(".parteright .player");
     const Joueurschangement=document.querySelectorAll(".containerJoueurs .player");
-    const JoueursPrermutation=document.querySelectorAll(".parteright .player")[0];
+   // const JoueursPrermutation=document.querySelectorAll(".parteright .player")[0];
+
+   function ajouterJoueurListePrincipal(){
+
+    JoueursPrincipal.forEach(JoueurPrincipal=>{
+        JoueurPrincipal.onclick=function(){
+            //location.href = "#containerJoueurs";
+            // console.log(JoueurPrincipal.classList[1]);
+            updatePlayerPosition(JoueurPrincipal.classList[1],JoueurPrincipal);
+        }
+            
+    })
+    
+}
+
+    ajouterJoueurListePrincipal();
 
     function updatePlayerPosition(PositionJoueur,JoueurPrincipal){
         Joueurschangement.forEach(Joueuchangement=>{
@@ -393,24 +329,113 @@ ajouterJoueurLocalStorage();
     
 
 
-    function ajouterJoueurListePrincipal(){
+function ajouterNouveauGardient() {
+        const formulaireAjouterGardiennt = document.querySelector(".formulaireAjouterGardiennt #playerForm");
+        const BtnEnregestrerLeformulaire = formulaireAjouterGardiennt.querySelector(".btnEnrgestrerJoueur");
+    
+        BtnEnregestrerLeformulaire.addEventListener('click', function(event) {
+            event.preventDefault();  
+    
+         
+            const name = formulaireAjouterGardiennt.querySelector("#name").value.trim();  
+            const photo = formulaireAjouterGardiennt.querySelector("#photo").value.trim();
+            
+            const position = "GK";  
+            const nationality = formulaireAjouterGardiennt.querySelector("#nationality").value.trim();
+            const club = formulaireAjouterGardiennt.querySelector("#club").value.trim();
+            const rating = formulaireAjouterGardiennt.querySelector("#rating").value.trim();
+            const diving = formulaireAjouterGardiennt.querySelector("#diving").value.trim();
+            const handling = formulaireAjouterGardiennt.querySelector("#handling").value.trim();
+            const kicking = formulaireAjouterGardiennt.querySelector("#kicking").value.trim();
+            const reflexes = formulaireAjouterGardiennt.querySelector("#reflexes").value.trim();
+    
+           
+            console.log(name,photo,nationality,club, rating, diving, handling, kicking, reflexes);
+    
+         
+            if (name && photo &&  rating && diving && handling && kicking && reflexes) {
+                const Player = {
+                    name,
+                    photo,
+                    position,
+                    nationality,
+                    club,
+                    rating: parseInt(rating),  
+                    diving: parseInt(diving),
+                    handling: parseInt(handling),
+                    kicking: parseInt(kicking),
+                    reflexes: parseInt(reflexes)
+                };
+    
+                Players.push(Player);
+    
 
-        JoueursPrincipal.forEach(JoueurPrincipal=>{
-            JoueurPrincipal.onclick=function(){
-                //location.href = "#containerJoueurs";
-                // console.log(JoueurPrincipal.classList[1]);
-                updatePlayerPosition(JoueurPrincipal.classList[1],JoueurPrincipal);
+                localStorage.setItem('Players', JSON.stringify(Players));
+    
+
+                formulaireAjouterGardiennt.reset();
+                alert(`le Gardient ${Player.name} à été ajouter avec succés`);
+            } else {
+                alert('Veuillez remplir tous les champs requis.');
             }
-                
-        })
-        
+            afficherJoueur();
+        });
     }
 
-    ajouterJoueurListePrincipal()
+ajouterNouveauGardient();
 
-    
 
+function ajouterNouveauJoueur() {
+        const formulaireAjouterJoueur = document.querySelector(".formulaire_ajouterJoueur #playerForm");
+        const BtnEnregestrerLeformulaire = formulaireAjouterJoueur.querySelector(".btnEnrgestrerJoueur");
+    
+        BtnEnregestrerLeformulaire.addEventListener('click', function(event) {
+            event.preventDefault();
+    
+            
+            const name = document.querySelector("#name").value;
+            const photo = document.querySelector("#photo").value;
+            const position = document.querySelector("#position").value;
+            const nationality = document.querySelector("#nationality").value;
+            const club = document.querySelector("#club").value;
+            const rating = document.querySelector("#rating").value;
+            const shooting = document.querySelector("#shooting").value;
+            const passing = document.querySelector("#passing").value;
+            const dribbling = document.querySelector("#dribbling").value;
+            const defending = document.querySelector("#defending").value;
+    
+            
+            if (name && photo && position && rating && shooting && passing && dribbling && defending){
+                
+                const Player = {
+                    name,
+                    photo,
+                    position,
+                    nationality,
+                    club,
+                    rating: parseInt(rating),  
+                    shooting: parseInt(shooting),
+                    passing: parseInt(passing),
+                    dribbling: parseInt(dribbling),
+                    defending: parseInt(defending)
+                };
+    
+              
+                Players.push(Player);
+    
+                localStorage.setItem('Players', JSON.stringify(Players));
     
     
+                formulaireAjouterJoueur.reset();
+                alert(`le Joueur ${Player.name} à été ajouter avec succés`);
+            } else {
     
+                alert('Veuillez remplir tous les champs requis.');
+            }
+            afficherJoueur();
+        });
+    }
+
+ajouterNouveauJoueur();  
+   
 })
