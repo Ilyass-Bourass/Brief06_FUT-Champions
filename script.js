@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     let Players = JSON.parse(localStorage.getItem('Players')) || [];
 
+
     const selctJoueurGaradien=document.querySelector(".selctJoueurGaradien select");
     const formulaire_ajouterJoueur=document.querySelector(".formulaire_ajouterJoueur");
     const formulaireAjouterGardiennt=document.querySelector(".formulaireAjouterGardiennt");
@@ -13,8 +14,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         containerJoueurs.innerHTML="";
         Players.forEach((Player,index)=>{
+            const JoueursPrincipal = document.querySelectorAll(".parteright .player");
+          //  console.log(JoueursPrincipal[10]);
 
-            if(Player.position==="GK"){
+            if(Player.position==="GK" && JoueurNexistePasPrincipal(Player.name,JoueursPrincipal)){
     
             const Joueur=document.createElement("div");
             Joueur.classList.add("player",Player.position);
@@ -68,7 +71,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         }
         else {
-            const Joueur=document.createElement("div");
+            if(JoueurNexistePasPrincipal(Player.name,JoueursPrincipal)){
+                const Joueur=document.createElement("div");
             Joueur.classList.add("player",Player.position);
             Joueur.innerHTML=` <div class="DetailsJoeur">
                         <div class="player-position">
@@ -116,13 +120,62 @@ document.addEventListener("DOMContentLoaded",()=>{
             
             iconModifier.addEventListener("click",()=>{
                 modifierInformationJoueur(Player);
-            })
+            });
+        }
+            
 
         }
         });
     }
     afficherJoueur();
+    function JoueurNexistePasPrincipal(nomJoueurChngement, JoueursPrincipal) {
+        let nexistePas = true;
+    
+        JoueursPrincipal.forEach(JoueurPrincipal => {
+            if (JoueurPrincipal) {
+                const playerNameElement = JoueurPrincipal.querySelector(".player-name p");
+    
+                if (playerNameElement) {
+                    const nomJoueurprincipal = playerNameElement.textContent;
+                    if (nomJoueurChngement === nomJoueurprincipal) {
+                        nexistePas = false;
+                    }
+                } 
+            }
+        });
+    
+        return nexistePas;
+    }
 
+   
+    
+    
+
+
+
+
+
+    // function jOueurnExistePas(Joueuchangement) {
+    //     let trouve = true;  
+    
+        
+    //     const joueurNomElement = Joueuchangement.querySelector('.player-name p');
+    //     if (joueurNomElement) {
+    //         const joueurNom = joueurNomElement.textContent;
+    //         JoueursPrincipal.forEach(JoueurPrincipal => {
+    //             const joueurPrincipalNomElement = JoueurPrincipal.querySelector('.player-name p');
+    //             if (joueurPrincipalNomElement) {
+    //                 const joueurPrincipalNom = joueurPrincipalNomElement.textContent;
+    
+    //                 if (joueurNom === joueurPrincipalNom) {
+    //                     trouve = false;  
+    //                 }
+    //             }
+    //         });
+    //     }
+        
+    //     return trouve;
+    // }
     
     function supprimerJoueur(Player,indexSupprimer){
         Players.splice(indexSupprimer,1);
@@ -133,7 +186,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         else{
             alert(`Le joueur ${Player.name} à été supprimer avec succés`);
         }
-        afficherJoueur();
+        location.reload();
     }
 
     function modifierInformationJoueur(Player){
@@ -170,7 +223,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                     
                     divformulaireModierJoueur.style.display = "none";
                     alert(`la modification du Joueur ${Player.name} à été fait avec succés`);
-                    afficherJoueur();
+                    location.reload();
                 });
     }
 
@@ -205,9 +258,10 @@ document.addEventListener("DOMContentLoaded",()=>{
                     localStorage.setItem("Players", JSON.stringify(Players));
                     divFormulaireModierGardient.style.display = "none";
                     alert(`La modification du gardient ${Player.name} à éte fait avec succés`);
-                    afficherJoueur();
+                    location.reload();
                 });
     }
+
 
     const selectChoixFormation=document.querySelector("#formation");
 
@@ -239,6 +293,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         choisirentreJoueurGardient(selctJoueurGaradien.value);
     })
 
+
     function choisirentreJoueurGardient(Choix){  
             if (Choix=== "Gardien") {
                 formulaire_ajouterJoueur.style.display = "none";
@@ -253,20 +308,22 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 
-    const JoueursPrincipal=document.querySelectorAll(".parteright .player");
+
     const Joueurschangement=document.querySelectorAll(".containerJoueurs .player");
-   // const JoueursPrermutation=document.querySelectorAll(".parteright .player")[0];
+  
 
    function ajouterJoueurListePrincipal(){
-
+    const JoueursPrincipal=document.querySelectorAll(".parteright .player");
     JoueursPrincipal.forEach(JoueurPrincipal=>{
         JoueurPrincipal.onclick=function(){
             //location.href = "#containerJoueurs";
-            // console.log(JoueurPrincipal.classList[1]);
+            
             updatePlayerPosition(JoueurPrincipal.classList[1],JoueurPrincipal);
+            // afficherJoueur();
         }
             
     })
+    
     
 }
 
@@ -274,7 +331,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     function updatePlayerPosition(PositionJoueur,JoueurPrincipal){
         Joueurschangement.forEach(Joueuchangement=>{
-            // if(Joueuchangement.querySelector('.player-position p').textContent==PositionJoueur && jOueurnExistePas(Joueuchangement))
            if(Joueuchangement.querySelector('.player-position p').textContent==PositionJoueur){
             Joueuchangement.style.display="";
            }
@@ -282,50 +338,24 @@ document.addEventListener("DOMContentLoaded",()=>{
             Joueuchangement.style.display="none";
            }
            Joueuchangement.onclick=function(){
-                // if(JoueurPrincipal){
-                //     JoueursPrermutation.innerHTML=JoueurPrincipal.innerHTML;
-                //     JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
-                //     Joueuchangement.innerHTML=JoueursPrermutation.innerHTML;
-                // }
-                // else{
-                //     JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
-                // }
-               
+                
                 JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
+                
+                const iconModifier=JoueurPrincipal.getElementsByTagName("i")[2];
+                iconModifier.remove();
+                const iconSupprimerListePrincipal=document.createElement("i");
+                iconSupprimerListePrincipal.innerHTML=`<i class="fas fa-times"></i>`
+                JoueurPrincipal.appendChild(iconSupprimerListePrincipal);
 
-                const i=document.createElement("i");
-                i.innerHTML=`<i class="fas fa-times"></i>`
-                JoueurPrincipal.appendChild(i);
-
-                i.addEventListener("click",()=>{
+                iconSupprimerListePrincipal.addEventListener("click",()=>{
                     JoueurPrincipal.innerHTML="";
                 })
-               // Joueuchangement.style.display ='none'
+                Joueuchangement.style.display ='none'
            }
         })
     }
 
-    // function jOueurnExistePas(Joueuchangement) {
-    //     let trouve = true;  
     
-        
-    //     const joueurNomElement = Joueuchangement.querySelector('.player-name p');
-    //     if (joueurNomElement) {
-    //         const joueurNom = joueurNomElement.textContent;
-    //         JoueursPrincipal.forEach(JoueurPrincipal => {
-    //             const joueurPrincipalNomElement = JoueurPrincipal.querySelector('.player-name p');
-    //             if (joueurPrincipalNomElement) {
-    //                 const joueurPrincipalNom = joueurPrincipalNomElement.textContent;
-    
-    //                 if (joueurNom === joueurPrincipalNom) {
-    //                     trouve = false;  
-    //                 }
-    //             }
-    //         });
-    //     }
-        
-    //     return trouve;
-    // }
     
 
 
