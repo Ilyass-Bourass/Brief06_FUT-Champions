@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const containerJoueurs = document.querySelector(".containerJoueurs");
     
     
-    function afficherJoueur(){
+function afficherJoueur(){
 
         containerJoueurs.innerHTML="";
         Players.forEach((Player,index)=>{
@@ -52,18 +52,23 @@ document.addEventListener("DOMContentLoaded",()=>{
                     </div>
             `
             const iconSupprimer=document.createElement("i");
-            iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+           // iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+           iconSupprimer.classList.add("fas","fa-times");
             Joueur.appendChild(iconSupprimer);
-            containerJoueurs.appendChild(Joueur);
+           
+            
+           const iconModifier=document.createElement("i");
+          // iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
+          iconModifier.classList.add("fa","fa-user-edit");
+           Joueur.appendChild(iconModifier);
+
+           containerJoueurs.appendChild(Joueur);
 
             iconSupprimer.addEventListener("click",()=>{
                 supprimerJoueur(Player,index);
             })
 
-            const iconModifier=document.createElement("i");
-            iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
-            Joueur.appendChild(iconModifier);
-            containerJoueurs.appendChild(Joueur);
+            
 
             iconModifier.addEventListener("click",()=>{
                 location.href="#parteLeft";
@@ -106,32 +111,33 @@ document.addEventListener("DOMContentLoaded",()=>{
                     </div>
             `
             const iconSupprimer=document.createElement("i");
-            iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+           // iconSupprimer.innerHTML=`<i class="fas fa-times"></i>`
+            iconSupprimer.classList.add("fas","fa-times");
             Joueur.appendChild(iconSupprimer);
-
+            
+            const iconModifier=document.createElement("i");
+           // iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
+           iconModifier.classList.add("fa","fa-user-edit");
+            Joueur.appendChild(iconModifier);
+            
             containerJoueurs.appendChild(Joueur);
+
+
             iconSupprimer.addEventListener("click",()=>{
                 supprimerJoueur(Player,index);
             })
 
-            const iconModifier=document.createElement("i");
-            iconModifier.innerHTML=`<i class="fa fa-user-edit"></i>`
-            Joueur.appendChild(iconModifier);
-            containerJoueurs.appendChild(Joueur);
-            
             iconModifier.addEventListener("click",()=>{
                 location.href="#parteLeft";
                 modifierInformationJoueur(Player);
             });
         }
-            
-
         }
         });
     }
     afficherJoueur();
     
-    function JoueurNexistePasPrincipal(nomJoueurChngement, JoueursPrincipal) {
+function JoueurNexistePasPrincipal(nomJoueurChngement, JoueursPrincipal) {
         let nexistePas = true;
     
         JoueursPrincipal.forEach(JoueurPrincipal => {
@@ -150,7 +156,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         return nexistePas;
     }
 
-    function ajouterNouveauJoueur() {
+function ajouterNouveauJoueur() {
         const formulaireAjouterJoueur = document.querySelector(".formulaire_ajouterJoueur #playerForm");
         const BtnEnregestrerLeformulaire = formulaireAjouterJoueur.querySelector(".btnEnrgestrerJoueur");
     
@@ -204,7 +210,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         });
     }
 
-ajouterNouveauJoueur();  
+    ajouterNouveauJoueur();  
 
 function ajouterNouveauGardient() {
     const formulaireAjouterGardiennt = document.querySelector(".formulaireAjouterGardiennt #playerForm");
@@ -263,10 +269,10 @@ function ajouterNouveauGardient() {
     });
 }
 
-ajouterNouveauGardient();
+    ajouterNouveauGardient();
    
     
-    function supprimerJoueur(Player,indexSupprimer){
+function supprimerJoueur(Player,indexSupprimer){
         Players.splice(indexSupprimer,1);
         localStorage.setItem("Players",JSON.stringify(Players));
 
@@ -274,13 +280,13 @@ ajouterNouveauGardient();
             alert(`Le gardient ${Player.name} à été supprimer avec succés`);
         }
         else{
-            alert(`Le joueur ${Player.name} à été supprimer avec succés`);
+            alert(`on peut pas supprimer ce joueur`);
         }
         document.dispatchEvent(new Event("DOMContentLoaded"));
     }
 
 
-    function modifierInformationJoueur(Player){
+function modifierInformationJoueur(Player){
         const divformulaireModierJoueur=document.querySelector(".FormulaireModierjoueur");
         const formulaireModierJoueur=divformulaireModierJoueur.querySelector("#playerForm");
 
@@ -318,7 +324,8 @@ ajouterNouveauGardient();
                 });
     }
 
-    function modifierInformationGardient(Player){
+
+function modifierInformationGardient(Player){
         const divFormulaireModierGardient=document.querySelector(".FormulaireModierGardient");
         const FormulaireModierGardient=divFormulaireModierGardient.querySelector("#playerForm");
                 divFormulaireModierGardient.style.display="block";
@@ -354,14 +361,14 @@ ajouterNouveauGardient();
     }
 
 
-    const selectChoixFormation=document.querySelector("#formation");
+const selectChoixFormation=document.querySelector("#formation");
 
-    selectChoixFormation.addEventListener("change",(e)=>{
+selectChoixFormation.addEventListener("change",(e)=>{
         chosirVotreFormation(selectChoixFormation.value);
     });
 
 
-    function chosirVotreFormation(choixFormation){
+function chosirVotreFormation(choixFormation){
         const playerST=document.querySelector(".parteright .ST");
         const playerRW=document.querySelector(".parteright .RW");
         const playerLW=document.querySelector(".parteright .LW");
@@ -386,12 +393,12 @@ ajouterNouveauGardient();
 
 
     
-    selctJoueurGaradien.addEventListener("change",()=>{
+selctJoueurGaradien.addEventListener("change",()=>{
         choisirentreJoueurGardient(selctJoueurGaradien.value);
     })
 
 
-    function choisirentreJoueurGardient(Choix){  
+function choisirentreJoueurGardient(Choix){  
             if (Choix=== "Gardien") {
                 formulaire_ajouterJoueur.style.display = "none";
                 formulaireAjouterGardiennt.style.display = "block";
@@ -406,10 +413,10 @@ ajouterNouveauGardient();
 
 
 
-    const Joueurschangement=document.querySelectorAll(".containerJoueurs .player");
+const Joueurschangement=document.querySelectorAll(".containerJoueurs .player");
   
 
-   function ajouterJoueurListePrincipal(){
+function ajouterJoueurListePrincipal(){
     const JoueursPrincipal=document.querySelectorAll(".parteright .player");
     JoueursPrincipal.forEach(JoueurPrincipal=>{
         JoueurPrincipal.onclick=function(){
@@ -426,7 +433,9 @@ ajouterNouveauGardient();
 
     ajouterJoueurListePrincipal();
 
-    function mettreAJourPositionDuJoueur(PositionJoueur,JoueurPrincipal){
+function mettreAJourPositionDuJoueur(PositionJoueur,JoueurPrincipal){
+        
+
         Joueurschangement.forEach(Joueuchangement=>{
            if(Joueuchangement.querySelector('.player-position p').textContent==PositionJoueur){
             Joueuchangement.style.display="";
@@ -434,18 +443,25 @@ ajouterNouveauGardient();
            else{
             Joueuchangement.style.display="none";
            }
+
            Joueuchangement.onclick=function(){
                 
                 JoueurPrincipal.innerHTML = Joueuchangement.innerHTML;
                 
-                const iconModifier=JoueurPrincipal.getElementsByTagName("i")[2];
+                const iconModifier=JoueurPrincipal.getElementsByTagName("i")[1];
                 iconModifier.remove();
+
+                const iconSupprimer=JoueurPrincipal.getElementsByTagName("i")[0];
+                iconSupprimer.remove();
+                
                 const iconSupprimerListePrincipal=document.createElement("i");
-                iconSupprimerListePrincipal.innerHTML=`<i class="fas fa-times"></i>`
+               // iconSupprimerListePrincipal.innerHTML=`<i class="fas fa-times"></i>`
+               iconSupprimerListePrincipal.classList.add("fas","fa-times");
                 JoueurPrincipal.appendChild(iconSupprimerListePrincipal);
 
                 iconSupprimerListePrincipal.addEventListener("click",()=>{
                     JoueurPrincipal.innerHTML="";
+                    document.dispatchEvent(new Event("DOMContentLoaded"));
                 })
                 // Joueuchangement.style.display ='none';
                 document.dispatchEvent(new Event("DOMContentLoaded"));
