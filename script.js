@@ -202,7 +202,6 @@ function ajouterNouveauJoueur() {
                // formulaireAjouterJoueur.style.display="none";
                 location.reload();
             } else {
-                location.reload();
                 alert('Veuillez remplir tous les champs requis.');
                 console.log("Joueurs");
             }
@@ -262,7 +261,6 @@ function ajouterNouveauGardient() {
             location.reload();
         }
          else {
-            location.reload();
             alert('Veuillez remplir tous les champs requis.');
             console.log("gardient");
         }
@@ -279,9 +277,9 @@ function supprimerJoueur(Player,indexSupprimer){
         if(Player.position=="GK"){
             alert(`Le gardient ${Player.name} à été supprimer avec succés`);
         }
-        else{
-            alert(`on peut pas supprimer ce joueur`);
-        }
+         else{
+            alert(`Le Joueur ${Player.name} à été supprimer avec succés`);
+         }
         document.dispatchEvent(new Event("DOMContentLoaded"));
     }
 
