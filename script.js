@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         containerJoueurs.innerHTML="";
         Players.forEach((Player,index)=>{
             const JoueursPrincipal = document.querySelectorAll(".parteright .player");
-          //  console.log(JoueursPrincipal[10]);
 
             if(Player.position==="GK" && JoueurNexistePasPrincipal(Player.name,JoueursPrincipal)){
     
@@ -119,6 +118,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             containerJoueurs.appendChild(Joueur);
             
             iconModifier.addEventListener("click",()=>{
+                location.href="#parteLeft";
                 modifierInformationJoueur(Player);
             });
         }
@@ -148,34 +148,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
    
-    
-    
-
-
-
-
-
-    // function jOueurnExistePas(Joueuchangement) {
-    //     let trouve = true;  
-    
-        
-    //     const joueurNomElement = Joueuchangement.querySelector('.player-name p');
-    //     if (joueurNomElement) {
-    //         const joueurNom = joueurNomElement.textContent;
-    //         JoueursPrincipal.forEach(JoueurPrincipal => {
-    //             const joueurPrincipalNomElement = JoueurPrincipal.querySelector('.player-name p');
-    //             if (joueurPrincipalNomElement) {
-    //                 const joueurPrincipalNom = joueurPrincipalNomElement.textContent;
-    
-    //                 if (joueurNom === joueurPrincipalNom) {
-    //                     trouve = false;  
-    //                 }
-    //             }
-    //         });
-    //     }
-        
-    //     return trouve;
-    // }
     
     function supprimerJoueur(Player,indexSupprimer){
         Players.splice(indexSupprimer,1);
@@ -320,6 +292,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             
             updatePlayerPosition(JoueurPrincipal.classList[1],JoueurPrincipal);
             // afficherJoueur();
+            
         }
             
     })
